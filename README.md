@@ -1,7 +1,7 @@
 # htmlOS
-how to get Open-Source?
+how to fork this?
 download the .html and modify it
 
-Open Without Download HTML here:
+Open the original without downloading HTML here:
 
 https://xicook.github.io/htmlOS/
