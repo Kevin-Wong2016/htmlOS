@@ -41,7 +41,7 @@ html,body{height:100%;background:linear-gradient(180deg,#071026 0%, #081526 50%,
   <div class="wallpaper">
     <div class="icons" id="icons">
       <div class="icon" data-app="terminal"><div class="box">💻</div><span>Terminal</span></div>
-      <div class="icon" data-app="notes"><div class="box">📝</div><span>Notas</span></div>
+      <div class="icon" data-app="notes"><div class="box">📝</div><span>Notes</span></div>
       <div class="icon" data-app="settings"><div class="box">⚙️</div><span>Config</span></div>
     </div>
   </div>
@@ -260,11 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const rest = parts.slice(1).join(' ');
 
       if (c === 'help') {
-        writeLine('Comandos: help, time, pwd, ls, cd <dir>, echo <texto>, clear, delete <nome>, mkdir <nome>, touch <nome>, rm, ver, cat');
+        writeLine('Commands: help, time, pwd, ls, cd <dir>, echo <texto>, clear, delete <nome>, mkdir <nome>, touch <nome>, rm, ver, cat');
       } else if (c === 'ver') {
         writeLine('htmlOS');
-        writeLine('Versão: Beta 1 Build 134 - Public Beta Build');
-        writeLine('Language Pack version and language: PT-BR - Version 1.0 Finished');
+        writeLine('Version: Beta 1 Build 134 - Public Beta Build');
+        writeLine('Language Pack version and language: EN-US - Version 1.0 Finished');
         writeLine('root: /HTMLSYS');
       } else if (c === 'time') {
         writeLine(new Date().toString());
@@ -283,8 +283,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = rest || '/home/user';
         const path = normalizePath(target);
         const node = getNode(path);
-        if (!node) writeLine('cd: diretório não existe: ' + target);
-        else if (node.type !== 'dir') writeLine('cd: não é um diretório: ' + target);
+        if (!node) writeLine('cd: directory doesnt exist: ' + target);
+        else if (node.type !== 'dir') writeLine('cd: directory doesnt exist: ' + target);
         else { cwd = path; refreshPwd(); }
       } else if (c === 'echo') {
         writeLine(rest);
@@ -292,12 +292,12 @@ document.addEventListener('DOMContentLoaded', () => {
         out.innerHTML = '';
       } else if (c === 'cat') {
         const target = rest.trim();
-        if (!target) writeLine('cat: falta operando');
+        if (!target) writeLine('cat: operation missing');
         else {
           const path = normalizePath(target);
           const node = getNode(path);
-          if (!node) writeLine('cat: arquivo não encontrado');
-          else if (node.type !== 'file') writeLine('cat: não é um arquivo');
+          if (!node) writeLine('cat: file not found');
+          else if (node.type !== 'file') writeLine('cat: file not found');
           else writeLine(node.content || '');
         }
       } else if (c === 'mkdir') {
@@ -326,14 +326,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } else if (c === 'rm') {
         const name = rest.trim();
-        if (!name) writeLine('rm: falta operando');
+        if (!name) writeLine('rm: operation missing');
         else {
           const path = normalizePath(name);
           const parts = path.split('/').filter(Boolean);
           const targetName = parts.pop();
           const parentPath = '/' + parts.join('/');
           const parent = getNode(parentPath === '/' ? '/' : parentPath);
-          if (!parent || parent.type !== 'dir') writeLine('rm: caminho inválido');
+          if (!parent || parent.type !== 'dir') writeLine('rm: Invalid path');
           else if (!parent.children[targetName]) writeLine('rm: arquivo não encontrado');
           else { delete parent.children[targetName]; writeLine('rm: ' + targetName + ' removido'); }
         }
@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       } else {
-        writeLine('Comando não reconhecido - digite help');
+        writeLine('Unrecognized command - type help');
       }
     }
 
